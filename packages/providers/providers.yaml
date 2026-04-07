@@ -939,6 +939,24 @@ anrok:
             description: The API key for your Anrok account
             doc_section: '#step-1-finding-your-api-key'
 
+anvil:
+    display_name: Anvil - Document Automation
+    categories:
+        - legal
+    auth_mode: API_KEY
+    proxy:
+        base_url: https://graphql.useanvil.com
+        headers:
+            authorization: Bearer ${apiKey}
+    docs: https://nango.dev/docs/integrations/all/anvil
+    docs_connect: https://nango.dev/docs/integrations/all/anvil/connect
+    credentials:
+        apiKey:
+            type: string
+            title: API Key
+            description: The API key for your Anvil account
+            doc_section: '#step-1-finding-your-api-key'
+
 amplitude:
     display_name: Amplitude (Event Streaming API)
     categories:
