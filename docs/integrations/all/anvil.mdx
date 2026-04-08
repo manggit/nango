@@ -1,0 +1,103 @@
+---
+title: 'Anvil'
+sidebarTitle: 'Anvil - Document Automation'
+description: 'Access the Anvil API in 2 minutes 💨'
+---
+
+
+
+<Tabs>
+  <Tab title="🚀 Quickstart">
+    <Steps>
+      <Step title="Create an integration">
+        In Nango ([free signup](https://app.nango.dev)), go to [Integrations](https://app.nango.dev/dev/integrations) -> _Configure New Integration_ -> _Anvil_.
+      </Step>
+      <Step title="Authorize Anvil">
+        Go to [Connections](https://app.nango.dev/dev/connections) -> _Add Test Connection_ -> _Authorize_, then enter your Anvil API key. Later, you'll let your users do the same directly from your app.
+      </Step>
+      <Step title="Call the Anvil API">
+        Let's make your first request to the Anvil API (list all document templates). Replace the placeholders below with your [secret key](https://app.nango.dev/dev/environment-settings), [integration ID](https://app.nango.dev/dev/integrations), and [connection ID](https://app.nango.dev/dev/connections):
+        <Tabs>
+            <Tab title="cURL">
+
+                ```bash
+                curl -X POST "https://api.nango.dev/proxy/v1/seller/integrations/id:{integrationId}/productIdMapping/list" \
+                  -H "Authorization: Bearer <NANGO-SECRET-KEY>" \
+                  -H "Provider-Config-Key: <INTEGRATION-ID>" \
+                  -H "Connection-Id: <CONNECTION-ID>" \
+                  -H "Content-Type: application/json" \
+                ```
+
+            </Tab>
+
+            <Tab title="Node">
+
+            Install Nango's backend SDK with `npm i @nangohq/node`. Then run:
+
+            ```typescript
+            import { Nango } from '@nangohq/node';
+
+            const nango = new Nango({ secretKey: '<NANGO-SECRET-KEY>' });
+
+            // Lists all Product ID mappings for a specific integration.
+            const res = await nango.post({
+              // https://www.useanvil.com/docs/api/graphql/reference/
+              endpoint: '',
+              providerConfigKey: '<INTEGRATION-ID>',
+              connectionId: '<CONNECTION-ID>'
+              data: {
+                query: 'query currentUser {
+                    currentUser {
+                        organizations {
+                            casts {
+                                eid
+                                name
+                                title
+                            }
+                        }
+                    }
+                }'
+            }
+            });
+
+            console.log(res.data);
+            ```
+            </Tab>
+
+        </Tabs>
+
+
+      </Step>
+    </Steps>
+
+    ✅ You're connected! Check the [Logs](https://app.nango.dev/dev/logs) tab in Nango to inspect requests.
+
+    <Tip>
+    Next step: [Embed the auth flow](/implementation-guides/platform/auth/implement-api-auth) in your app to let your users connect their Anvil accounts.
+    </Tip>
+  </Tab>
+  <Tab title="🔗 Useful links">
+    | Topic | Links |
+    | - | - |
+    | Authorization | [Guide to connect to Anvil using Connect UI](/integrations/all/anvil/connect) |
+    | General | [Anvil Website](https://www.useanvil.com/) |
+    | | [Anvil Dashboard](https://app.useanvil.com/) |
+    | Developer | [How to generate an Anvil API key](https://www.useanvil.com/docs/api/getting-started/#api-key) |
+    | | [Anvil API docs](https://www..useanvil.com/docs) |
+    | | [GraphQL Reference](https://www.useanvil.com/docs/api/graphql/reference) |
+    | | [Claude Plugin](https://github.com/anvilco/anvil-plugins) |
+
+    <Note>Contribute useful links by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/anvil.mdx)</Note>
+  </Tab>
+  <Tab title="🚨 API gotchas">
+    - The default rate limit for a developer key 2 requests per second. 
+    - The default rate limit for a production key is 20 requests per second.
+    - You will need to add a credit card to your account in order to use your production key.
+
+    <Note>Contribute API gotchas by [editing this page](https://github.com/nangohq/nango/tree/master/docs/integrations/all/anvil.mdx)</Note>
+  </Tab>
+</Tabs>
+
+<Info>
+    Questions? Join us in the [Slack community](https://nango.dev/slack).
+</Info>
